@@ -114,6 +114,13 @@ public class Rectangle implements Shape, Colorable, Fillable, Movable {
     }
 
     /**
+     * Retrieves current color of this rectangle.
+     */
+    public Color getColor() {
+        return this.color;
+    }
+
+    /**
      * Draws this rectangle.
      */
     @Override
@@ -137,6 +144,13 @@ public class Rectangle implements Shape, Colorable, Fillable, Movable {
     public void fill() {
         filled = true;
         Canvas.getInstance().show(this);
+    }
+
+    /**
+     * Retrieves if this rectangle is color filled
+     */
+    public boolean isFilled() {
+        return this.filled;
     }
 
     @Override
