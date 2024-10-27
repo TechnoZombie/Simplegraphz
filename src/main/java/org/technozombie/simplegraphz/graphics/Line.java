@@ -1,4 +1,4 @@
-package org.academiadecodigo.simplegraphics.graphics;
+package org.technozombie.simplegraphz.graphics;
 
 import java.awt.*;
 import java.awt.geom.Line2D;

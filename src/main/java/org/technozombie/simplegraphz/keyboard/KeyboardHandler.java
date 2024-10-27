@@ -1,4 +1,4 @@
-package org.academiadecodigo.simplegraphics.keyboard;
+package org.technozombie.simplegraphz.keyboard;
 
 import java.awt.event.KeyEvent;
 

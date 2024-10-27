@@ -1,14 +1,14 @@
-package org.academiadecodigo.simplegraphics.test;
+package org.technozombie.simplegraphz.test;
 
-import org.academiadecodigo.simplegraphics.graphics.*;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.mouse.Mouse;
-import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
-import org.academiadecodigo.simplegraphics.mouse.MouseHandler;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.technozombie.simplegraphz.graphics.*;
+import org.technozombie.simplegraphz.keyboard.Keyboard;
+import org.technozombie.simplegraphz.keyboard.KeyboardEvent;
+import org.technozombie.simplegraphz.keyboard.KeyboardEventType;
+import org.technozombie.simplegraphz.keyboard.KeyboardHandler;
+import org.technozombie.simplegraphz.mouse.Mouse;
+import org.technozombie.simplegraphz.mouse.MouseEvent;
+import org.technozombie.simplegraphz.mouse.MouseHandler;
+import org.technozombie.simplegraphz.pictures.Picture;
 
 public class Tester implements KeyboardHandler, MouseHandler {
 
@@ -45,11 +45,11 @@ public class Tester implements KeyboardHandler, MouseHandler {
         line.setColor(Color.BLUE);
         line.draw();
 
-        Text text = new Text(20, 180, "Simple Graphics");
+        Text text = new Text(20, 180, "Simple Graphz");
         text.setColor(Color.MAGENTA);
         text.draw();
 
-        Picture pic = new Picture(20, 220, "http://static0.bigstockphoto.com/thumbs/3/5/2/small2/25346960.jpg");
+        Picture pic = new Picture(20, 220, "https://pbs.twimg.com/profile_images/711052272923443200/1wBpdCko_400x400.jpg");
         pic.draw();
 
         Thread.sleep(2000);
@@ -70,7 +70,7 @@ public class Tester implements KeyboardHandler, MouseHandler {
 
         Thread.sleep(2000);
 
-        text.setText("Academia de Codigo");
+        text.setText("HaCkEd bY TechnoZombie");
     }
 
     @Override

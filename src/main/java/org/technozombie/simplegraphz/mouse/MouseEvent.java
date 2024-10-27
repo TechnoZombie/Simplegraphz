@@ -1,4 +1,4 @@
-package org.academiadecodigo.simplegraphics.mouse;
+package org.technozombie.simplegraphz.mouse;
 
 /**
  * Mouse Click event containing x and y coordinates

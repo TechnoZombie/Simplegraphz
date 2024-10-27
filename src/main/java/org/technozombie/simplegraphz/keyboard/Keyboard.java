@@ -1,6 +1,6 @@
-package org.academiadecodigo.simplegraphics.keyboard;
+package org.technozombie.simplegraphz.keyboard;
 
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.technozombie.simplegraphz.graphics.Canvas;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;

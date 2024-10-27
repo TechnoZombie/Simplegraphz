@@ -1,6 +1,6 @@
-package org.academiadecodigo.simplegraphics.mouse;
+package org.technozombie.simplegraphz.mouse;
 
-import org.academiadecodigo.simplegraphics.graphics.Canvas;
+import org.technozombie.simplegraphz.graphics.Canvas;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -24,12 +24,12 @@ public class Mouse implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        handler.mouseClicked(new org.academiadecodigo.simplegraphics.mouse.MouseEvent(e.getX(), e.getY()));
+        handler.mouseClicked(new org.technozombie.simplegraphz.mouse.MouseEvent(e.getX(), e.getY()));
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        handler.mouseMoved(new org.academiadecodigo.simplegraphics.mouse.MouseEvent(e.getX(), e.getY()));
+        handler.mouseMoved(new org.technozombie.simplegraphz.mouse.MouseEvent(e.getX(), e.getY()));
     }
 
     @Override

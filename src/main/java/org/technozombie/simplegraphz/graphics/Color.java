@@ -1,4 +1,4 @@
-package org.academiadecodigo.simplegraphics.graphics;
+package org.technozombie.simplegraphz.graphics;
 
 public class Color
 {

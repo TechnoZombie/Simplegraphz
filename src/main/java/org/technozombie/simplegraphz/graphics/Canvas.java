@@ -1,4 +1,6 @@
-package org.academiadecodigo.simplegraphics.graphics;
+package org.technozombie.simplegraphz.graphics;
+
+import org.technozombie.simplegraphz.utils.MenuConstants;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,10 +21,22 @@ public class Canvas {
     private static final int MARGIN = 10;
     private static final int LOCATION_OFFSET = 120;
     private static Canvas canvas = new Canvas();
-    private ArrayList<Shape> shapes = new ArrayList<Shape>();
+    private ArrayList<org.technozombie.simplegraphz.graphics.Shape> shapes = new ArrayList<org.technozombie.simplegraphz.graphics.Shape>();
     private BufferedImage background;
     private JFrame frame;
     private CanvasComponent component;
+
+    JMenuBar menuBar = new JMenuBar();
+    JMenu fileMenu = new JMenu(MenuConstants.FILE);
+    JMenuItem newFileItem = new JMenuItem(MenuConstants.NEW);
+    JMenuItem openFileItem = new JMenuItem(MenuConstants.OPEN);
+    JMenuItem saveFileItem = new JMenuItem(MenuConstants.SAVE);
+    JMenuItem exitItem = new JMenuItem(MenuConstants.EXIT);
+    JMenu editMenu = new JMenu(MenuConstants.EDIT);
+    JMenuItem cutItem = new JMenuItem(MenuConstants.CUT);
+    JMenuItem copyItem = new JMenuItem(MenuConstants.COPY);
+    JMenuItem pasteItem = new JMenuItem(MenuConstants.PASTE);
+    JMenuItem snapshotItem = new JMenuItem(MenuConstants.SNAPSHOT);
 
     private Canvas() {
         component = new CanvasComponent();
@@ -32,6 +46,20 @@ public class Canvas {
         frame.pack();
         frame.setLocation(LOCATION_OFFSET, LOCATION_OFFSET);
         frame.setVisible(true);
+        frame.setJMenuBar(menuBar);
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        fileMenu.add(newFileItem);
+        fileMenu.add(openFileItem);
+        fileMenu.add(saveFileItem);
+        fileMenu.addSeparator(); // Adds a separator line between items
+        fileMenu.add(exitItem);
+        editMenu.add(cutItem);
+        editMenu.add(copyItem);
+        editMenu.add(pasteItem);
+        editMenu.add(snapshotItem);
+        exitItem.addActionListener(e -> System.exit(0)); // Exit the program when "Exit" is clicked
+        snapshotItem.addActionListener(e -> snapshot());
     }
 
     /**
@@ -74,14 +102,14 @@ public class Canvas {
         getInstance().component.repaint();
     }
 
-    public void show(Shape s) {
+    public void show(org.technozombie.simplegraphz.graphics.Shape s) {
         if (!shapes.contains(s)) {
             shapes.add(s);
         }
         repaint();
     }
 
-    public void hide(Shape s) {
+    public void hide(org.technozombie.simplegraphz.graphics.Shape s) {
         if (shapes.contains(s)) {
             shapes.remove(s);
         }
@@ -150,7 +178,7 @@ public class Canvas {
             if (background != null) {
                 g.drawImage(background, 0, 0, null);
             }
-            for (Shape s : new ArrayList<Shape>(shapes)) {
+            for (org.technozombie.simplegraphz.graphics.Shape s : new ArrayList<org.technozombie.simplegraphz.graphics.Shape>(shapes)) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 s.paintShape(g2);
                 g2.dispose();

@@ -1,4 +1,4 @@
-package org.academiadecodigo.simplegraphics.mouse;
+package org.technozombie.simplegraphz.mouse;
 
 /**
  * Interface to be implemented by all classes that want to receive mouse events
