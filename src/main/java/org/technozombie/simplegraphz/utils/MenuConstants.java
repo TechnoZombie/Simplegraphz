@@ -13,5 +13,6 @@ public class MenuConstants {
     public static final String PASTE = "Paste";
     public static final String OK_TO_CONTINUE = "Click OK to continue";
     public static final String SNAPSHOT = "Snapshot";
+    public static final String PAUSE = "Pause";
 }
 

@@ -37,6 +37,7 @@ public class Canvas {
     JMenuItem copyItem = new JMenuItem(MenuConstants.COPY);
     JMenuItem pasteItem = new JMenuItem(MenuConstants.PASTE);
     JMenuItem snapshotItem = new JMenuItem(MenuConstants.SNAPSHOT);
+    JMenuItem pauseItem = new JMenuItem(MenuConstants.PAUSE);
 
     private Canvas() {
         component = new CanvasComponent();
@@ -57,9 +58,13 @@ public class Canvas {
         editMenu.add(cutItem);
         editMenu.add(copyItem);
         editMenu.add(pasteItem);
+        editMenu.add(pauseItem);
         editMenu.add(snapshotItem);
+
         exitItem.addActionListener(e -> System.exit(0)); // Exit the program when "Exit" is clicked
         snapshotItem.addActionListener(e -> snapshot());
+        pauseItem.addActionListener(e -> pause());
+        saveFileItem.addActionListener(e -> saveToDisk("saved.jpg"));
     }
 
     /**

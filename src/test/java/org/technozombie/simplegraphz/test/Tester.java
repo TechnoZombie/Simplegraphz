@@ -22,10 +22,15 @@ public class Tester implements KeyboardHandler, MouseHandler {
     public void test() throws InterruptedException {
 
         Keyboard k = new Keyboard(this);
-        KeyboardEvent event = new KeyboardEvent();
-        event.setKey(KeyboardEvent.KEY_SPACE);
-        event.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        k.addEventListener(event);
+        KeyboardEvent event1 = new KeyboardEvent();
+        event1.setKey(KeyboardEvent.KEY_SPACE);
+        event1.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        k.addEventListener(event1);
+
+        KeyboardEvent event2 = new KeyboardEvent();
+        event2.setKey(KeyboardEvent.KEY_SPACE);
+        event2.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        k.addEventListener(event2);
 
         Mouse m = new Mouse(this);
 
@@ -81,7 +86,7 @@ public class Tester implements KeyboardHandler, MouseHandler {
 
     @Override
     public void keyReleased(KeyboardEvent e) {
-
+        System.out.println("SPACE KEY RELEASED");
     }
 
     @Override
