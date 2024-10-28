@@ -1,7 +1,5 @@
 package org.technozombie.simplegraphz.graphics;
 
-import org.technozombie.simplegraphz.utils.MenuConstants;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -26,40 +24,59 @@ public class Canvas {
     private BufferedImage background;
     private JFrame frame;
     private CanvasComponent component;
-
-    JMenuBar menuBar = new JMenuBar();
-    JMenu fileMenu = new JMenu(MenuConstants.FILE);
-    JMenuItem exitItem = new JMenuItem(MenuConstants.EXIT);
-
+    private JMenuBar menuBar = new JMenuBar();
 
     private Canvas() {
         component = new CanvasComponent();
-
         frame = new JFrame();
         frame.add(component);
         frame.pack();
         frame.setLocation(LOCATION_OFFSET, LOCATION_OFFSET);
         frame.setVisible(true);
         frame.setJMenuBar(menuBar);
-        menuBar.add(fileMenu);
-        fileMenu.addSeparator(); // Adds a separator line between items
-        fileMenu.add(exitItem);
-        exitItem.addActionListener(e -> System.exit(0)); // Exit the program when "Exit" is clicked
-
     }
 
-    public void addToFileMenu(String newItem, ActionListener action){
-        JMenuItem item = new JMenuItem(newItem);
-        fileMenu.add(item);
+    public void addMenu(String menuName){
+        JMenu menu = new JMenu(menuName);
+        menuBar.add(menu);
+    }
+
+    public void addItemToMenu(String menuName, String label, ActionListener action) {
+        JMenuItem item = new JMenuItem(label);
+        findOrCreateMenu(menuName).add(item);
         item.addActionListener(action);
     }
 
-    public void addMenuAndItem(String newMenu, String newItem, ActionListener action){
-        JMenu addMenu = new JMenu(newMenu);
-        menuBar.add(addMenu);
-        JMenuItem addItem = new JMenuItem(newItem);
-        addMenu.add(addItem);
-        addItem.addActionListener(action);
+    public void addMenuSeparator(String menuName){
+        findMenu(menuName).addSeparator();
+    }
+
+    /**
+     * Finds an existing menu by name or creates a new one if it doesn't exist.
+     *
+     * @param menuName the name of the menu to find or create
+     * @return the JMenu object
+     */
+    private JMenu findOrCreateMenu(String menuName) {
+        for (int i = 0; i < menuBar.getMenuCount(); i++) {
+            JMenu menu = menuBar.getMenu(i);
+            if (menu.getText().equals(menuName)) {
+                return menu;
+            }
+        }
+        JMenu newMenu = new JMenu(menuName);
+        menuBar.add(newMenu);
+        return newMenu;
+    }
+
+    private JMenu findMenu(String menuName) {
+        for (int i = 0; i < menuBar.getMenuCount(); i++) {
+            JMenu menu = menuBar.getMenu(i);
+            if (menu.getText().equals(menuName)) {
+                return menu;
+            }
+        }
+        return null;
     }
 
 
