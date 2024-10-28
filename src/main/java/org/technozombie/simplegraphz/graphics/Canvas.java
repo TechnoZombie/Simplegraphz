@@ -5,6 +5,7 @@ import org.technozombie.simplegraphz.utils.MenuConstants;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -28,16 +29,8 @@ public class Canvas {
 
     JMenuBar menuBar = new JMenuBar();
     JMenu fileMenu = new JMenu(MenuConstants.FILE);
-    JMenuItem newFileItem = new JMenuItem(MenuConstants.NEW);
-    JMenuItem openFileItem = new JMenuItem(MenuConstants.OPEN);
-    JMenuItem saveFileItem = new JMenuItem(MenuConstants.SAVE);
     JMenuItem exitItem = new JMenuItem(MenuConstants.EXIT);
-    JMenu editMenu = new JMenu(MenuConstants.EDIT);
-    JMenuItem cutItem = new JMenuItem(MenuConstants.CUT);
-    JMenuItem copyItem = new JMenuItem(MenuConstants.COPY);
-    JMenuItem pasteItem = new JMenuItem(MenuConstants.PASTE);
-    JMenuItem snapshotItem = new JMenuItem(MenuConstants.SNAPSHOT);
-    JMenuItem pauseItem = new JMenuItem(MenuConstants.PAUSE);
+
 
     private Canvas() {
         component = new CanvasComponent();
@@ -49,23 +42,26 @@ public class Canvas {
         frame.setVisible(true);
         frame.setJMenuBar(menuBar);
         menuBar.add(fileMenu);
-        menuBar.add(editMenu);
-        fileMenu.add(newFileItem);
-        fileMenu.add(openFileItem);
-        fileMenu.add(saveFileItem);
         fileMenu.addSeparator(); // Adds a separator line between items
         fileMenu.add(exitItem);
-        editMenu.add(cutItem);
-        editMenu.add(copyItem);
-        editMenu.add(pasteItem);
-        editMenu.add(pauseItem);
-        editMenu.add(snapshotItem);
-
         exitItem.addActionListener(e -> System.exit(0)); // Exit the program when "Exit" is clicked
-        snapshotItem.addActionListener(e -> snapshot());
-        pauseItem.addActionListener(e -> pause());
-        saveFileItem.addActionListener(e -> saveToDisk("saved.jpg"));
+
     }
+
+    public void addToFileMenu(String newItem, ActionListener action){
+        JMenuItem item = new JMenuItem(newItem);
+        fileMenu.add(item);
+        item.addActionListener(action);
+    }
+
+    public void addMenuAndItem(String newMenu, String newItem, ActionListener action){
+        JMenu addMenu = new JMenu(newMenu);
+        menuBar.add(addMenu);
+        JMenuItem addItem = new JMenuItem(newItem);
+        addMenu.add(addItem);
+        addItem.addActionListener(action);
+    }
+
 
     /**
      * Provides access to the canvas singleton instance
@@ -100,8 +96,7 @@ public class Canvas {
         float factor = 0.8f;
         float base = 255f * (1f - factor);
         RescaleOp op = new RescaleOp(factor, base, null);
-        BufferedImage filteredImage
-                = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
+        BufferedImage filteredImage = new BufferedImage(image.getWidth(), image.getHeight(), image.getType());
         op.filter(image, filteredImage);
         getInstance().background = filteredImage;
         getInstance().component.repaint();
@@ -127,8 +122,7 @@ public class Canvas {
     public void repaint() {
         if (frame == null) return;
         Dimension dim = component.getPreferredSize();
-        if (dim.getWidth() > component.getWidth()
-                || dim.getHeight() > component.getHeight()) {
+        if (dim.getWidth() > component.getWidth() || dim.getHeight() > component.getHeight()) {
             frame.pack();
         } else {
             frame.repaint();
@@ -169,6 +163,7 @@ public class Canvas {
 
     /**
      * Adds a mouse listener to the canvas
+     *
      * @param handler reference to the MouseListener object
      */
     public void addMouseListener(MouseListener handler) {
