@@ -151,6 +151,45 @@ public class Canvas {
      *
      * @param fileName the name of the file to save
      */
+
+    public void saveToDisk(String fileName) {
+        Dimension dim = component.getPreferredSize();
+        java.awt.Rectangle rect = new java.awt.Rectangle(0, 0, dim.width, dim.height);
+        BufferedImage image = new BufferedImage(rect.width, rect.height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = (Graphics2D) image.getGraphics();
+
+        try {
+            // Set high-quality rendering hints for better sharpness
+            g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+            // Fill background color and draw component
+            g.setColor(java.awt.Color.WHITE);
+            g.fill(rect);
+            g.setColor(java.awt.Color.BLACK);
+            component.paintComponent(g);
+        } finally {
+            g.dispose();
+        }
+
+        // Get the file extension or default to "png"
+        String extension = "png";
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+            extension = fileName.substring(dotIndex + 1).toLowerCase();
+        }
+
+        try {
+            ImageIO.write(image, extension, new File(fileName));
+            System.out.println("Image saved successfully to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Unable to save the image to " + fileName + ": " + e.getMessage());
+        }
+    }
+
+
+    /*
     public void saveToDisk(String fileName) {
         Dimension dim = component.getPreferredSize();
         java.awt.Rectangle rect = new java.awt.Rectangle(0, 0, dim.width, dim.height);
@@ -167,7 +206,7 @@ public class Canvas {
             System.err.println("Was unable to save the image to " + fileName);
         }
         g.dispose();
-    }
+    }*/
 
     /**
      * Adds a key listener to the canvas

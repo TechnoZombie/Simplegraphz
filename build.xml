@@ -4,11 +4,11 @@
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="simple-graphics" />
+        <property name="project.name" value="simplegraphics" />
         <property name="src.dir" value="src" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
-        <property name="version" value="0.2.1-SNAPSHOT" />
+        <property name="version" value="0.2.1-TechnoZombie" />
     </target>
 
     <!-- Creates the build directories to hold JAR and Class files -->
