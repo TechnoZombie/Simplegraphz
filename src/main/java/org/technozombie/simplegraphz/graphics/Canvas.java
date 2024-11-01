@@ -1,5 +1,7 @@
 package org.technozombie.simplegraphz.graphics;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 /**
  * Container of shapes
  */
+@Slf4j
 public class Canvas {
     private static final int MIN_SIZE = 100;
     private static final int MARGIN = 10;
@@ -34,6 +37,7 @@ public class Canvas {
         frame.setLocation(LOCATION_OFFSET, LOCATION_OFFSET);
         frame.setVisible(true);
         frame.setJMenuBar(menuBar);
+        log.info("Canvas loaded correctly.");
     }
 
     public void setAppIcon(String filePath){
@@ -49,7 +53,7 @@ public class Canvas {
         frame.setTitle(title);
     }
 
-    public void addMenu(String menuName){
+    public void addMenu(String menuName) {
         JMenu menu = new JMenu(menuName);
         menuBar.add(menu);
     }
@@ -60,7 +64,7 @@ public class Canvas {
         item.addActionListener(action);
     }
 
-    public void addMenuSeparator(String menuName){
+    public void addMenuSeparator(String menuName) {
         findMenu(menuName).addSeparator();
     }
 
@@ -195,13 +199,11 @@ public class Canvas {
 
         try {
             ImageIO.write(image, extension, new File(fileName));
-            System.out.println("Image saved successfully to " + fileName);
+            log.info("Image saved successfully to " + fileName);
         } catch (IOException e) {
-            System.out.println("Unable to save the image to " + fileName + ": " + e.getMessage());
+            log.error("Unable to save the image to " + fileName + ": " + e.getMessage());
         }
     }
-
-
     /*
     public void saveToDisk(String fileName) {
         Dimension dim = component.getPreferredSize();

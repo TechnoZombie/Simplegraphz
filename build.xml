@@ -1,32 +1,37 @@
 <?xml version="1.0" ?>
-
 <project name="simple-graphics" basedir="." default="jarfile">
 
-    <!-- Initialize build properties  -->
+    <property name="project.name" value="simplegraphics" />
+    <property name="src.dir" value="src" />
+    <property name="build.dir" value="build" />
+    <property name="classes.dir" value="${build.dir}/classes" />
+    <property name="lib.dir" value="lib" />
+    <property name="version" value="1.0.0-TechnoZombie-MOD" />
+
+    <path id="compile.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="simplegraphics" />
-        <property name="src.dir" value="src" />
-        <property name="build.dir" value="build" />
-        <property name="classes.dir" value="${build.dir}/classes" />
-        <property name="version" value="0.2.1-TechnoZombie" />
     </target>
 
-    <!-- Creates the build directories to hold JAR and Class files -->
     <target name="prepare" description="Creates the build and classes directories" depends="init">
         <mkdir dir="${classes.dir}" />
     </target>
 
-    <!-- Compiles the source code -->
     <target name="compile" description="Compiles the code" depends="prepare">
-        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" />
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath"/>
     </target>
 
-    <!-- Creates a JAR file -->
-    <target name="jarfile" description="Archives the code" depends="compile">
-        <jar destfile="${build.dir}/${project.name}-${version}.jar" basedir="${classes.dir}" />
+    <target name="jarfile" description="Archives the code with dependencies" depends="compile">
+        <jar destfile="${build.dir}/${project.name}-${version}.jar">
+            <fileset dir="${classes.dir}" />
+            <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
+        </jar>
     </target>
 
-    <!-- Removes the build directory -->
     <target name="clean" description="Clean up" depends="init">
         <delete dir="${build.dir}" />
     </target>

@@ -1,5 +1,6 @@
 package org.technozombie.simplegraphz.pictures;
 
+import lombok.extern.slf4j.Slf4j;
 import org.technozombie.simplegraphz.graphics.Canvas;
 import org.technozombie.simplegraphz.graphics.Color;
 import org.technozombie.simplegraphz.graphics.Movable;
@@ -15,6 +16,7 @@ import java.net.URL;
 /**
  * A picture from an image file.
  */
+@Slf4j
 public class Picture implements Shape, Movable {
     private BufferedImage image;
     private JLabel label = new JLabel();
@@ -103,7 +105,7 @@ public class Picture implements Shape, Movable {
         } catch (Exception ex) {
             image = null;
             label.setIcon(null);
-            ex.printStackTrace();
+            log.error("Error: ", ex);
         }
         Canvas.getInstance().repaint();
     }
