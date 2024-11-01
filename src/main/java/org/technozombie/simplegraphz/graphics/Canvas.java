@@ -36,6 +36,19 @@ public class Canvas {
         frame.setJMenuBar(menuBar);
     }
 
+    public void setAppIcon(String filePath){
+        try {
+            BufferedImage icon = ImageIO.read(new File(filePath));
+            frame.setIconImage(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setAppTitle(String title){
+        frame.setTitle(title);
+    }
+
     public void addMenu(String menuName){
         JMenu menu = new JMenu(menuName);
         menuBar.add(menu);
