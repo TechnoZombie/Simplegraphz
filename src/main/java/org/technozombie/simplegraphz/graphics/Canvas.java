@@ -37,7 +37,7 @@ public class Canvas {
         frame.setLocation(LOCATION_OFFSET, LOCATION_OFFSET);
         frame.setVisible(true);
         frame.setJMenuBar(menuBar);
-        log.info("Canvas loaded correctly.");
+        log.info("Canvas loaded!");
     }
 
     public void setAppIcon(String filePath){
@@ -45,7 +45,7 @@ public class Canvas {
             BufferedImage icon = ImageIO.read(new File(filePath));
             frame.setIconImage(icon);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error setting app icon: ", e);
         }
     }
 
@@ -201,7 +201,7 @@ public class Canvas {
             ImageIO.write(image, extension, new File(fileName));
             log.info("Image saved successfully to " + fileName);
         } catch (IOException e) {
-            log.error("Unable to save the image to " + fileName + ": " + e.getMessage());
+            log.error("Unable to save the image to " + fileName + ": " + e);
         }
     }
     /*
