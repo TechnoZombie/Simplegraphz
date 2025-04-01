@@ -1,9 +1,13 @@
-# SIMPLEGRAPHZ!
+# SimplegraphZ!
+
+![GitHub last commit](https://img.shields.io/github/last-commit/technozombie/Simplegraphz)
+![GitHub license](https://img.shields.io/github/license/technozombie/Simplegraphz)
+
 A shameless rip-off of  **simple-graphics** from Academia de Código / CodeForALL_.
 
-original repo: [https://github.com/academia-de-codigo/simple-graphics](https://github.com/academia-de-codigo/simple-graphics)
+Original repo: [https://github.com/academia-de-codigo/simple-graphics](https://github.com/academia-de-codigo/simple-graphics)
 
-based on Simple Graphics Library with Keyboard Events ( [http://horstmann.com/sjsu/graphics/](http://horstmann.com/sjsu/graphics/) )
+Based on Simple Graphics Library with Keyboard Events ( [http://horstmann.com/sjsu/graphics/](http://horstmann.com/sjsu/graphics/) )
 
 # What is it?
 
@@ -40,15 +44,15 @@ SimpleGraphz is a Java library designed to make graphical programming accessible
 
 Clone this repository and include it in your Java project:
 
-```bash
+\`\`\`bash
 git clone https://github.com/TechnoZombie/Simplegraphz.git
-```
+\`\`\`
 
 ## Usage Examples
 
 ### Basic Shapes
 
-```java
+\`\`\`java
 // Create and display a rectangle
 Rectangle rect = new Rectangle(10, 10, 100, 50);
 rect.setColor(Color.BLUE);
@@ -64,11 +68,11 @@ ellipse.draw();
 Line line = new Line(50, 100, 200, 150);
 line.setColor(Color.BLACK);
 line.draw();
-```
+\`\`\`
 
 ### Text and Images
 
-```java
+\`\`\`java
 // Display text
 Text text = new Text(50, 200, "Hello, SimpleGraphz!");
 text.setColor(Color.MAGENTA);
@@ -77,21 +81,21 @@ text.draw();
 // Display an image
 Picture pic = new Picture(100, 250, "path/to/image.jpg");
 pic.draw();
-```
+\`\`\`
 
 ### Animation
 
-```java
+\`\`\`java
 // Move a shape
 rect.translate(10, 5);  // Move 10 pixels right and 5 pixels down
 
 // Resize a shape
 ellipse.grow(5, 5);  // Grow by 5 pixels in each direction
-```
+\`\`\`
 
 ### Event Handling
 
-```java
+\`\`\`java
 public class MyApp implements KeyboardHandler, MouseHandler {
     public void setup() {
         // Create keyboard handling
@@ -119,14 +123,14 @@ public class MyApp implements KeyboardHandler, MouseHandler {
     
     // Implement other required methods...
 }
-```
+\`\`\`
 
 ### Saving Canvas to Image
 
-```java
+\`\`\`java
 // Save current canvas to a file
 Canvas.getInstance().saveToDisk("screenshot.png");
-```
+\`\`\`
 
 ## Architecture
 
@@ -162,4 +166,3 @@ Shapes that can be moved implement this interface:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
